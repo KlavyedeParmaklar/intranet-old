@@ -3,20 +3,11 @@ import { BsBackspace } from 'react-icons/bs'
 
 export default class Dashboard extends Component {
     render() {
-
-        const routeChange = () =>{ 
-            this.props.history.push("/");
-            window.location.reload()
-          }
-
         return (
             <>
                 <nav className="navbar navbar-light" style={{ backgroundColor: "#e3f2fd" }}>
                     <div className="container-fluid">
-                        <a className="navbar-brand"><BsBackspace onClick={routeChange} className="me-2" />IT Dashboard</a>
-                        <li className="d-flex">
-                            <h4>Logout</h4>
-                        </li>
+                        <a className="navbar-brand">IT Dashboard</a>
                     </div>
                 </nav>
                 <nav className="navbar navbar-light">

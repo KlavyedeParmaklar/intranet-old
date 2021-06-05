@@ -12,33 +12,38 @@ import { useDispatch } from "react-redux";
 
 function Login(props) {
 
-    const [input, setInput] = useState(initialState)
+    const [inputs, setInputs] = useState({
+        email: '',
+        password: ''
+    });
 
+    const { email, password } = inputs;
     const dispatch = useDispatch();
 
-    onSubmitChangeHandler = (values, { setSubmitting }) => {
-        setTimeout(() => {
-            let dataToSubmit = {
-                email: values.email,
-                password: values.password
-            };
+    function onSubmitChangeHandler(event) {
+        event.preventDefault()
 
-            dispatch(loginUser(dataToSubmit))
-                .then(response => {
-                    if (response.payload.loginSuccess) {
-                        props.history.push("/");
-                    } else {
-                        setFormErrorMessage('Check out your Account or Password again')
-                    }
-                })
-                .catch(err => {
-                    setFormErrorMessage('Check out your Account or Password again')
-                    setTimeout(() => {
-                        setFormErrorMessage("")
-                    }, 3000);
-                });
-            setSubmitting(false);
-        }, 500);
+        let dataToSubmit = {
+            email: email,
+            password: password
+        };
+
+        dispatch(loginUser(dataToSubmit))
+            .then(response => {
+                if (response.payload.loginSuccess) {
+                    props.history.push("/");
+                } else {
+                    alert('Check out your Account or Password again')
+                }
+            })
+            .catch(err => {
+                alert('Check out your Account or Password again')
+            });
+    }
+
+    function handleChange(e) {
+        const { name, value } = e.target;
+        setInputs(inputs => ({ ...inputs, [name]: value }));
     }
 
     return (
@@ -69,18 +74,18 @@ function Login(props) {
                             </div>
                         </div>
                         <div className="d-flex justify-content-center m-3">
-                            <form>
+                            <form onSubmit={onSubmitChangeHandler}>
                                 <div className="input-group mb-3">
                                     <div className="input-group-append">
                                         <span className="input-group-text m-1"><FaUser /></span>
                                     </div>
-                                    <input type="email" id="inputEmail" className="form-control" placeholder="Email address" required autofocus />
+                                    <input onChange={handleChange} name="email" value={email} type="email" id="inputEmail" className="form-control" placeholder="Email address" required autoFocus />
                                 </div>
                                 <div className="input-group mb-2">
                                     <div className="input-group-append">
                                         <span className="input-group-text m-1"><FaKey /></span>
                                     </div>
-                                    <input type="password" id="inputPassword" className="form-control" placeholder="Password" required />
+                                    <input type="password" name="password" value={password} onChange={handleChange} id="inputPassword" className="form-control" placeholder="Password" required />
                                 </div>
                                 <div className="d-flex justify-content-center m-3">
                                     <button className="btn btn-lg btn-block" style={{ background: 'rgba(220, 97, 20, 0.65)' }} type="submit">Sign in</button>

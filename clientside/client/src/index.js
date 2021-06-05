@@ -7,19 +7,20 @@ import { BrowserRouter } from 'react-router-dom'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, combineReducers } from 'redux'
+import promiseMiddleware from 'redux-promise';
 
 // Our Reducers
 import NotebookTable from './store/reducers/NotebookTable'
 import TelephoneTable from './store/reducers/TelephoneTable';
-import Reducer from './_reducers'
+import User from './_reducers/user_reducer'
 
 const rootReducer = combineReducers({
   notebookTable: NotebookTable,
   telephoneTable: TelephoneTable,
-  Reducer: Reducer
+  User
 })
 
-const store = createStore(rootReducer, applyMiddleware(thunk))
+const store = createStore(rootReducer, applyMiddleware(promiseMiddleware, thunk))
 
 ReactDOM.render(
   <Provider store={store}>
