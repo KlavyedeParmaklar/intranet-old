@@ -1,0 +1,15 @@
+body {
+  margin: 0;
+  font-family: SourceSansPro;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+@font-face {
+  font-family: 'SourceSansPro';
+  src: local('SourceSansPro'), url(./fonts/SourceSansPro/SourceSansPro-Regular.ttf) format('truetype');
+}
