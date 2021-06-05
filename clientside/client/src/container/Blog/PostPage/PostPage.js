@@ -12,7 +12,7 @@ function PostPage(props) {
 
         const variable = { postId: postId }
 
-        axios.post('http://localhost:5000/api/blog/getPost', variable)
+        axios.post('/api/blog/getPost', variable)
             .then(response => {
                 if (response.data.success) {
                     console.log(response.data.post)

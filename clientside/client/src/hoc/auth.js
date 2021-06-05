@@ -7,21 +7,24 @@ export default function (SpecificComponent, option, adminRoute = null) {
     function AuthenticationCheck(props) {
 
         let user = useSelector(state => state.User);
+
         const dispatch = useDispatch();
 
         useEffect(() => {
             //To know my current status, send Auth request 
             dispatch(auth()).then(response => {
+                localStorage.setItem('user', JSON.stringify(response.payload))
                 //Not Loggined in Status 
                 if (!response.payload.isAuth) {
                     if (option) {
                         props.history.push('/login')
                     }
                     //Loggined in Status 
+
                 } else {
                     //supposed to be Admin page, but not admin person wants to go inside
                     if (adminRoute && !response.payload.isAdmin) {
-                        props.history.push('/')
+                        // props.history.push('/')
                     }
                     //Logged in Status, but Try to go into log in page 
                     else {
@@ -32,7 +35,7 @@ export default function (SpecificComponent, option, adminRoute = null) {
                 }
             })
 
-        }, [])
+        }, [dispatch, props.history])
 
         return (
             <SpecificComponent {...props} user={user} />

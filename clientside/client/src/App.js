@@ -14,7 +14,7 @@ import BlogPage from './container/Blog/BlogPage/BlogPage'
 import CreatePage from './container/Blog/BlogPage/Sections/CreatePage'
 
 // Auth
-import Auth from './hoc/auth' 
+import Auth from './hoc/auth'
 
 class App extends Component {
 
@@ -31,8 +31,8 @@ class App extends Component {
           <Route exact path="/" component={Home} />
           <Route exact path="/notebooklist" component={NoteBookTable} />
           <Route exact path="/telephonelist" component={TelephoneTable} />
-          <Route exact path="/dashboard" component={Auth(Dashboard, false)} />
-          <Route exact path="/login" component={Login} />
+          <Route exact path="/dashboard" component={Auth(Dashboard, true)} />
+          <Route exact path="/login" component={Auth(Login, false)} />
           <Route exact path="/blog/post/:postId" component={PostPage} />
           <Route exact path="/blog" component={BlogPage} />
           <Route exact path="/blog/create" component={CreatePage} />

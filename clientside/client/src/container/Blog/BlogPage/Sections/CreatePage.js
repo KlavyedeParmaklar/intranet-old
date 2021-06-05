@@ -7,8 +7,9 @@ import QuilEditor from '../../../../components/UI/Quilljs Editor/QuillEditor'
 const { Title } = Typography
 
 function CreatePage(props) {
-    const user = useSelector(state => state.user)
 
+    const user = JSON.parse(localStorage.getItem('user'))
+    console.log("user", user)
     const [content, setContent] = useState("")
     const [file, setFile] = useState([])
 
@@ -25,16 +26,16 @@ function CreatePage(props) {
 
         setContent("")
 
-        // if (user.userData && !user.userData.isAuth) {
-        //     return alert("Please Log in first!")
-        // }
-
-        const variables = {
-            content: content
-            // userID: user.userData._id
+        if (user && !user.isAuth) {
+            return alert("Please Log in first!")
         }
 
-        axios.post('http://localhost:5000/api/blog/createPost', variables).then(response => {
+        const variables = {
+            content: content,
+            userID: user._id
+        }
+
+        axios.post('/api/blog/createPost', variables).then(response => {
             if (response.data.success) {
                 message.success('Post Created!')
 

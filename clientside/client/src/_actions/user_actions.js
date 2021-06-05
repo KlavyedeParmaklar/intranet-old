@@ -6,7 +6,7 @@ import {
     LOGOUT_USER,
 } from './types';
 
-const USER_SERVER = "http://localhost:5000/api/users"
+const USER_SERVER = "/api/users"
 
 export function registerUser(dataToSubmit){
     const request = axios.post(`${USER_SERVER}/register`,dataToSubmit)

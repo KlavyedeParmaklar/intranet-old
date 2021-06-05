@@ -6,7 +6,7 @@ import { FaUser, FaKey } from 'react-icons/fa'
 import TBlogo from '../../img/turkishbank.png';
 import bgPicture from '../../img/death-star.jpg'
 import './Login.css'
-
+import { withRouter } from 'react-router-dom'
 import { loginUser } from "../../_actions/user_actions";
 import { useDispatch } from "react-redux";
 
@@ -20,25 +20,27 @@ function Login(props) {
     const { email, password } = inputs;
     const dispatch = useDispatch();
 
-    function onSubmitChangeHandler(event) {
-        event.preventDefault()
+    function onSubmitChangeHandler(e) {
+        e.preventDefault()
+        setTimeout(() => {
+            let dataToSubmit = {
+                email: email,
+                password: password
+            };
 
-        let dataToSubmit = {
-            email: email,
-            password: password
-        };
-
-        dispatch(loginUser(dataToSubmit))
-            .then(response => {
-                if (response.payload.loginSuccess) {
-                    props.history.push("/");
-                } else {
+            dispatch(loginUser(dataToSubmit))
+                .then(response => {                                            
+                    if (response.payload.loginSuccess) {
+                        window.location.reload()
+                        props.history.push("/");
+                    } else {
+                        alert('Check out your Account or Password again')
+                    }
+                })
+                .catch(err => {
                     alert('Check out your Account or Password again')
-                }
-            })
-            .catch(err => {
-                alert('Check out your Account or Password again')
-            });
+                });
+        }, 500)
     }
 
     function handleChange(e) {
@@ -88,7 +90,7 @@ function Login(props) {
                                     <input type="password" name="password" value={password} onChange={handleChange} id="inputPassword" className="form-control" placeholder="Password" required />
                                 </div>
                                 <div className="d-flex justify-content-center m-3">
-                                    <button className="btn btn-lg btn-block" style={{ background: 'rgba(220, 97, 20, 0.65)' }} type="submit">Sign in</button>
+                                    <button className="btn btn-lg btn-block" style={{ background: 'rgba(220, 97, 20, 0.65)' }} type="submit" onSubmit={onSubmitChangeHandler}>Sign in</button>
                                 </div>
                             </form>
                         </div>
@@ -99,4 +101,4 @@ function Login(props) {
     )
 }
 
-export default Login
+export default withRouter(Login)
