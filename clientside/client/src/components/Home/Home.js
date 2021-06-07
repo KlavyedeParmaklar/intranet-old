@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 export default class Home extends Component {
     render() {
         return (
-            <div className="container mb-5"> 
+            <div className="container" style={{marginTop:"6rem"}}> 
                 <div className="m-5">
                     <div className="card">
                         <div className="card-header">Message from HR!</div>

@@ -13,8 +13,10 @@ import PostPage from './container/Blog/PostPage/PostPage'
 import BlogPage from './container/Blog/BlogPage/BlogPage'
 import CreatePage from './container/Blog/BlogPage/Sections/CreatePage'
 
+
 // Auth
 import Auth from './hoc/auth'
+import DashboardRoutes from './container/Dashboard/DashboardRoutes'
 
 class App extends Component {
 
@@ -34,8 +36,9 @@ class App extends Component {
           <Route exact path="/dashboard" component={Auth(Dashboard, true)} />
           <Route exact path="/login" component={Auth(Login, false)} />
           <Route exact path="/blog/post/:postId" component={Auth(PostPage, null)} />
-          <Route exact path="/blog" component={Auth(BlogPage,null)} />
+          <Route exact path="/blog" component={Auth(BlogPage, null)} />
           <Route exact path="/blog/create" component={Auth(CreatePage, true)} />
+          <DashboardRoutes />
         </Switch>
         {/* <Footer /> */}
       </div >
