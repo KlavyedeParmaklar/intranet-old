@@ -37,7 +37,7 @@ class App extends Component {
           <Route exact path="/blog" component={BlogPage} />
           <Route exact path="/blog/create" component={CreatePage} />
         </Switch>
-        <Footer />
+        {/* <Footer /> */}
       </div >
     )
   }

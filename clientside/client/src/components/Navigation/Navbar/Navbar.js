@@ -30,7 +30,7 @@ export default class Navbar extends Component {
         let isUser = localStorage.getItem("user")
         if (isUser) {
             return (
-                <div>
+                <div className="fixed-top">
                     <div className="logo"></div>
                     <Menu theme="light" mode="horizontal">
                         <Menu.Item><img src={TBlogo} className="AppLogo" alt="tblogo" /></Menu.Item>
@@ -39,13 +39,13 @@ export default class Navbar extends Component {
                         <Menu.Item><Link to="/blog">TBUK Blog</Link></Menu.Item>
                         <Menu.Item><Link to="/blog/create">TBUK Blog Create</Link></Menu.Item>
                         <Menu.Item ><Link to="/dashboard">Dashboard</Link></Menu.Item>
-                        <Menu.Item style={{ float: 'right' }}><Link onClick={() => logoutHandler()} to="/">Logout</Link></Menu.Item>
+                        <Menu.Item className="ms-auto"><Link onClick={() => logoutHandler()} to="/">Logout</Link></Menu.Item>
                     </Menu>
                 </div>
             )
         } else {
             return (
-                <div>
+                <div className=" fixed-top">
                     <div className="logo"></div>
                     <Menu theme="light" mode="horizontal">
                         <Menu.Item><img src={TBlogo} className="AppLogo" alt="tblogo" /></Menu.Item>

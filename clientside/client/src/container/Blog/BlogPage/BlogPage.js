@@ -28,9 +28,7 @@ function BlogPage() {
                 hoverable
                 style={{ width: 370, marginTop: 16 }}
                 actions={[
-                    <Icon type="setting" key="setting" />,
-                    <Icon type="edit" key="edit" />,
-                    <a href={`/blog/post/${blog._id}`}> <Icon type="ellipsis" key="ellipsis" /></a>,
+                    <a href={`/blog/post/${blog._id}`}>...</a>,
                 ]}
             >
                 {/* <Meta
