@@ -15,7 +15,7 @@ import TelephoneTable from './store/reducers/TelephoneTable';
 import User from './_reducers/user_reducer'
 
 const rootReducer = combineReducers({
-  notebookTable: NotebookTable,
+  NotebookTable: NotebookTable,
   telephoneTable: TelephoneTable,
   User
 })
