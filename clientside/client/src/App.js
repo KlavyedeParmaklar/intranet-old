@@ -29,13 +29,13 @@ class App extends Component {
         <Navbar />
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/notebooklist" component={NoteBookTable} />
-          <Route exact path="/telephonelist" component={TelephoneTable} />
+          <Route exact path="/notebooklist" component={Auth(NoteBookTable, true)} />
+          <Route exact path="/telephonelist" component={Auth(TelephoneTable, null)} />
           <Route exact path="/dashboard" component={Auth(Dashboard, true)} />
           <Route exact path="/login" component={Auth(Login, false)} />
-          <Route exact path="/blog/post/:postId" component={PostPage} />
-          <Route exact path="/blog" component={BlogPage} />
-          <Route exact path="/blog/create" component={CreatePage} />
+          <Route exact path="/blog/post/:postId" component={Auth(PostPage, null)} />
+          <Route exact path="/blog" component={Auth(BlogPage,null)} />
+          <Route exact path="/blog/create" component={Auth(CreatePage, true)} />
         </Switch>
         {/* <Footer /> */}
       </div >
