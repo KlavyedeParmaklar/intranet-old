@@ -1,37 +1,88 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
+import axios from 'axios'
 
 // CSS 
 import TBlogo from '../../../img/turkishbank.png';
 import './App.css'
 
+// ANTD 
+import { Layout, Menu } from 'antd';
+import 'antd/dist/antd.css'
+
 export default class Navbar extends Component {
+
     render() {
-        return (
-            <nav className="navbar card navbar-expand-lg navbar-light bg-light m-2">
-                <div className="container-fluid">
-                    <img src={TBlogo} className="AppLogo" alt="tblogo" />
-                    <div className="collapse navbar-collapse ms-3" id="navbarNav">
-                        <ul className="navbar-nav">
-                            <li className="nav-item">
-                                <Link className="nav-link active" aria-current="page" to="/">Home</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/telephonelist">Telephone List</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/blog">TBUK Blog</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/blog/create">TBUK Blog Create</Link>
-                            </li>
-                            <li className="nav-item">
-                            <button className="nav-link btn" onClick={() => window.location.reload()}><Link style={{textDecoration: 'none', color: 'inherit'}} to="/dashboard">Dashboard</Link></button>
-                            </li>
-                        </ul>
-                    </div>
+
+        // const { Header, Content, Footer } = Layout;
+
+        const logoutHandler = () => {
+            axios.get("/api/users/logout").then(response => {
+                if (response.status === 200) {
+                    localStorage.removeItem("user")
+                    window.location.reload()
+                } else {
+                    alert('Log Out Failed')
+                }
+            });
+        }
+
+        let isUser = localStorage.getItem("user")
+        if (isUser) {
+            return (
+                <div>
+                    <div className="logo"></div>
+                    <Menu theme="light" mode="horizontal">
+                        <Menu.Item><img src={TBlogo} className="AppLogo" alt="tblogo" /></Menu.Item>
+                        <Menu.Item><Link to="/">Home</Link></Menu.Item>
+                        <Menu.Item><Link to="/telephonelist">Telephone List</Link></Menu.Item>
+                        <Menu.Item><Link to="/blog">TBUK Blog</Link></Menu.Item>
+                        <Menu.Item><Link to="/blog/create">TBUK Blog Create</Link></Menu.Item>
+                        <Menu.Item ><Link to="/dashboard">Dashboard</Link></Menu.Item>
+                        <Menu.Item style={{ float: 'right' }}><Link onClick={() => logoutHandler()} to="/">Logout</Link></Menu.Item>
+                    </Menu>
                 </div>
-            </nav>
-        )
+            )
+        } else {
+            return (
+                <div>
+                    <div className="logo"></div>
+                    <Menu theme="light" mode="horizontal">
+                        <Menu.Item><img src={TBlogo} className="AppLogo" alt="tblogo" /></Menu.Item>
+                        <Menu.Item><Link to="/">Home</Link></Menu.Item>
+                        <Menu.Item><Link to="/telephonelist">Telephone List</Link></Menu.Item>
+                        <Menu.Item><Link to="/blog">TBUK Blog</Link></Menu.Item>
+                        <Menu.Item><Link to="/blog/create">TBUK Blog Create</Link></Menu.Item>
+                    </Menu>
+                </div>
+            )
+        }
+        // <nav className="navbar card navbar-expand-lg navbar-light bg-light m-2">
+        //     <div className="container-fluid">
+        //         <img src={TBlogo} className="AppLogo" alt="tblogo" />
+        //         <div className="collapse navbar-collapse ms-3" id="navbarNav">
+        //             <ul className="navbar-nav">
+        //                 <li className="nav-item">
+        //                     <Link className="nav-link active" aria-current="page" to="/">Home</Link>
+        //                 </li>
+        //                 <li className="nav-item">
+        //                     <Link className="nav-link" to="/telephonelist">Telephone List</Link>
+        //                 </li>
+        //                 <li className="nav-item">
+        //                     <Link className="nav-link" to="/blog">TBUK Blog</Link>
+        //                 </li>
+        //                 <li className="nav-item">
+        //                     <Link className="nav-link" to="/blog/create">TBUK Blog Create</Link>
+        //                 </li>
+        //                 <li className="nav-item">
+        //                     <button className="nav-link btn" onClick={() => window.location.reload()}><Link style={{ textDecoration: 'none', color: 'inherit' }} to="/dashboard">Dashboard</Link></button>
+        //                 </li>
+        //                 <li className="nav-item">
+        //                     <button className="nav-link btn" onClick={() => logoutHandler()}><Link to="/" style={{ textDecoration: 'none', color: 'inherit' }} >Logout</Link></button>
+        //                 </li>
+        //             </ul>
+        //         </div>
+        //     </div>
+        // </nav>
     }
 }

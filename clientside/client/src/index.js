@@ -10,11 +10,13 @@ import { createStore, applyMiddleware, combineReducers } from 'redux'
 import promiseMiddleware from 'redux-promise';
 
 // Our Reducers
-//import NotebookTable from './store/reducers/NotebookTable'
-//import TelephoneTable from './store/reducers/TelephoneTable';
+import NotebookTable from './store/reducers/NotebookTable'
+import TelephoneTable from './store/reducers/TelephoneTable';
 import User from './_reducers/user_reducer'
 
-const rootReducer = combineReducers({ 
+const rootReducer = combineReducers({
+  notebookTable: NotebookTable,
+  telephoneTable: TelephoneTable,
   User
 })
 
