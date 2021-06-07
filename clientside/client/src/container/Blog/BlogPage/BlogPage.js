@@ -46,7 +46,7 @@ function BlogPage() {
     })
 
     return (
-        <div style={{ width: '85%', margin: '3rem auto' }}>
+        <div style={{ width: '85%', margin: '6rem auto' }}>
             <Title level={2}> Blog Lists </Title>
             <Row gutter={[32, 16]}>
                 {renderCards}

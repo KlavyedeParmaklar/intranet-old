@@ -32,7 +32,7 @@ export default class Navbar extends Component {
             return (
                 <div className="fixed-top">
                     <div className="logo"></div>
-                    <Menu theme="light" mode="horizontal">
+                    <Menu style={{ paddingTop: "1rem", paddingBottom: "1rem" }} theme="light" mode="horizontal">
                         <Menu.Item><img src={TBlogo} className="AppLogo" alt="tblogo" /></Menu.Item>
                         <Menu.Item><Link to="/">Home</Link></Menu.Item>
                         <Menu.Item><Link to="/telephonelist">Telephone List</Link></Menu.Item>

@@ -24,7 +24,7 @@ export default class Dashboard extends Component {
     render() {
         return (
             <>
-                <Layout style={{ marginTop: "50px", minHeight: '100vh' }} >
+                <Layout style={{ marginTop: "65px", minHeight: '100vh' }} >
                     <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}
                         style={{
                             overflow: 'auto',
@@ -33,7 +33,7 @@ export default class Dashboard extends Component {
                             left: 0,
                         }}>
                         <div className="logo" />
-                        <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
+                        <Menu className="mt-3" theme="dark" defaultSelectedKeys={['1']} mode="inline">
                             <Menu.Item key="1" icon={<PieChartOutlined />}>
                                 Option 1</Menu.Item>
                             <Menu.Item key="2" icon={<DesktopOutlined />}>

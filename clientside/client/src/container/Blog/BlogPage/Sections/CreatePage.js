@@ -49,7 +49,7 @@ function CreatePage(props) {
 
     return (
         <div>
-            <div style={{ maxWidth: '700px', margin: '2rem auto' }}>
+            <div style={{ maxWidth: '700px', margin: '6rem auto' }}>
                 <div style={{ textAlign: 'center' }}>
                     <Title level={2}>Editor</Title>
                 </div>

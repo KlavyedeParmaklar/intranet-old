@@ -25,7 +25,7 @@ function PostPage(props) {
 
     if (post.writer) {
         return (
-            <div className="postPage" style={{ width: '80%', margin: '3rem auto' }}>
+            <div className="postPage" style={{ width: '80%', margin: '6rem auto'}}>
                 <Title level={2}>{post.writer.name}`s Post</Title>
                 <br />
                 <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
