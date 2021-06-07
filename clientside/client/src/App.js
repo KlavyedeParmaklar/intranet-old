@@ -36,10 +36,13 @@ class App extends Component {
           <Route exact path="/blog/post/:postId" component={Auth(PostPage, null)} />
           <Route exact path="/blog" component={Auth(BlogPage, null)} />
 
-
-          <Route path="/dashboard" component={Dashboard} exact />
+          <Route path="/dashboard" component={Auth(Dashboard, true)} exact />
           <Route path="/dashboard/createblog" ><Dashboard /></Route>
           <Route path="/dashboard/notebooklist"><Dashboard /></Route>
+
+          {/* <Route exact path="/blog/create" component={Auth(CreatePage, true)} />
+          <Route exact path="/notebooklist" component={Auth(NoteBookTable, true)} />
+          <Route exact path="/dashboard" component={Auth(Dashboard, true)} />  */}
         </Switch>
         {/* <Footer /> */}
       </div >

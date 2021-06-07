@@ -1,12 +1,5 @@
 import React, { Component } from 'react'
 import { Layout, Menu, Breadcrumb } from 'antd';
-import {
-    DesktopOutlined,
-    PieChartOutlined,
-    TeamOutlined,
-    UserOutlined,
-    EditOutlined
-} from '@ant-design/icons';
 import 'antd/dist/antd.css'
 import "./Dashboard.css"
 import DashboardRoutes from './DashboardRoutes';
@@ -45,18 +38,18 @@ export default class Dashboard extends Component {
                         }}>
                         <div className="logo" />
                         <Menu className="mt-3" theme="dark" defaultSelectedKeys={['1']} defaultOpenKeys={['sub2']} mode="inline">
-                            <Menu.Item key="1" icon={<PieChartOutlined />}>Option 1</Menu.Item>
-                            <Menu.Item key="2" icon={<DesktopOutlined />}>Option 2</Menu.Item>
-                            <SubMenu key="sub1" icon={<UserOutlined />} title="User">
+                            <Menu.Item key="1" >Option 1</Menu.Item>
+                            <Menu.Item key="2" >Option 2</Menu.Item>
+                            <SubMenu key="sub1"  title="User">
                                 <Menu.Item key="3">Add New...</Menu.Item>
                                 <Menu.Item key="4">All Users</Menu.Item>
                                 <Menu.Item key="5">Profile</Menu.Item>
                             </SubMenu>
-                            <SubMenu key="sub2" icon={<TeamOutlined />} title="Lists">
+                            <SubMenu key="sub2"  title="Lists">
                                 <Menu.Item key="6">Telephone List</Menu.Item>
                                 <Menu.Item key="7"><Link to="/dashboard/notebooklist">Notebook List</Link></Menu.Item>
                             </SubMenu>
-                            <Menu.Item key="8" icon={<EditOutlined />}><Link to="/dashboard/createblog">Create Blog</Link></Menu.Item>
+                            <Menu.Item key="8" ><Link to="/dashboard/createblog">Create Blog</Link></Menu.Item>
                         </Menu>
                     </Sider>
                     <Layout className="site-layout" style={this.state.collapsed ? { marginLeft: 100, transitionDelay: ".1s" } : { marginLeft: 200, transitionDelay: ".1s" }}>

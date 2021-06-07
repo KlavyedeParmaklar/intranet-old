@@ -36,6 +36,7 @@ function CreatePage(props) {
         }
 
         axios.post('/api/blog/createPost', variables).then(response => {
+            console.log(response)
             if (response.data.success) {
                 message.success('Post Created!')
 
