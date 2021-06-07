@@ -5,12 +5,12 @@ import { Route, Switch } from 'react-router-dom'
 import Navbar from './components/Navigation/Navbar/Navbar'
 import Footer from './components/Navigation/Footer/Footer'
 import Home from './components/Home/Home'
-import NoteBookTable from './container/NoteBookTable/NoteBookTable'
 import TelephoneTable from './container/TelephoneTable/TelephoneTable'
 import Login from './container/Login/Login'
 import Dashboard from './container/Dashboard/Dashboard'
 import PostPage from './container/Blog/PostPage/PostPage'
 import BlogPage from './container/Blog/BlogPage/BlogPage'
+import NoteBookTable from './container/NoteBookTable/NoteBookTable'
 import CreatePage from './container/Blog/BlogPage/Sections/CreatePage'
 
 
@@ -31,14 +31,15 @@ class App extends Component {
         <Navbar />
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/notebooklist" component={Auth(NoteBookTable, true)} />
           <Route exact path="/telephonelist" component={Auth(TelephoneTable, null)} />
-          <Route exact path="/dashboard" component={Auth(Dashboard, true)} />
           <Route exact path="/login" component={Auth(Login, false)} />
           <Route exact path="/blog/post/:postId" component={Auth(PostPage, null)} />
           <Route exact path="/blog" component={Auth(BlogPage, null)} />
-          <Route exact path="/blog/create" component={Auth(CreatePage, true)} />
-          <DashboardRoutes />
+
+
+          <Route path="/dashboard" component={Dashboard} exact />
+          <Route path="/dashboard/createblog" ><Dashboard /></Route>
+          <Route path="/dashboard/notebooklist"><Dashboard /></Route>
         </Switch>
         {/* <Footer /> */}
       </div >

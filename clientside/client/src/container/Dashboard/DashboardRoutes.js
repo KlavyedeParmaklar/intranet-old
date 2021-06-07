@@ -5,6 +5,7 @@ import { Switch, Route } from 'react-router-dom'
 import Home from '../../components/Home/Home' // Make for dashboard home!!!
 import NoteBookTable from '../NoteBookTable/NoteBookTable'
 import CreateBlog from '../Blog/BlogPage/Sections/CreatePage'
+import Dashboard from './Dashboard'
 
 export default class DashboardRoutes extends Component {
     render() {
@@ -12,8 +13,8 @@ export default class DashboardRoutes extends Component {
             <div>
                 <Switch>
                     <Route exact path="/dashboard" component={Home} />
-                    <Route exact path="/dashboard/notebooklist" component={NoteBookTable} />
-                    <Route exact path="/dashboard/createblog" component={CreateBlog} />
+                    <Route path="/dashboard/notebooklist" component={NoteBookTable} />
+                    <Route path="/dashboard/createblog" component={CreateBlog} />
                 </Switch>
             </div>
         )

@@ -9,12 +9,11 @@ import {
 } from '@ant-design/icons';
 import 'antd/dist/antd.css'
 import "./Dashboard.css"
-import { Link } from 'react-router-dom';
 import DashboardRoutes from './DashboardRoutes';
 import CreatePage from '../Blog/BlogPage/Sections/CreatePage'
 
 
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Link, BrowserRouter } from 'react-router-dom'
 
 // Components
 import Home from '../../components/Home/Home' // Make for dashboard home!!!
@@ -63,7 +62,6 @@ export default class Dashboard extends Component {
                     <Layout className="site-layout" style={this.state.collapsed ? { marginLeft: 100, transitionDelay: ".1s" } : { marginLeft: 200, transitionDelay: ".1s" }}>
                         <Content style={{ margin: '24px 16px 0', overflow: 'initial' }}>
                             <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
-                                {/* <CreatePage /> */}
                                 <DashboardRoutes />
                             </div>
                         </Content>
