@@ -55,7 +55,7 @@ export default class Dashboard extends Component {
                                 <Menu.Item key="5">Profile</Menu.Item>
                             </SubMenu>
                             <SubMenu key="sub2" icon={<TeamOutlined />} title="Lists">
-                                <Menu.Item key="6" icon={<PhoneOutlined />}>Telephone List</Menu.Item>
+                                <Menu.Item key="6" icon={<PhoneOutlined />}><Link to="/dashboard/telephonelist">Telephone List</Link></Menu.Item>
                                 <Menu.Item key="7" icon={<LaptopOutlined />}><Link to="/dashboard/notebooklist">Notebook List</Link></Menu.Item>
                             </SubMenu>
                             <Menu.Item key="8" icon={<EditOutlined />}><Link to="/dashboard/createblog">Create Blog</Link></Menu.Item>

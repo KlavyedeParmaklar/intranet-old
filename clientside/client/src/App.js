@@ -39,6 +39,7 @@ class App extends Component {
           <Route path="/dashboard" component={Auth(Dashboard, true)} exact />
           <Route path="/dashboard/createblog" ><Dashboard /></Route>
           <Route path="/dashboard/notebooklist"><Dashboard /></Route>
+          <Route path="/dashboard/telephonelist"><Dashboard /></Route>
 
           {/* <Route exact path="/blog/create" component={Auth(CreatePage, true)} />
           <Route exact path="/notebooklist" component={Auth(NoteBookTable, true)} />
