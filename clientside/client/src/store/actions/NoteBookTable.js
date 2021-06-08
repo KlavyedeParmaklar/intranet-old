@@ -14,6 +14,17 @@ export const notebookCloseModal = () => {
     }
 }
 
+export const notebookOpenAddModal = () => {
+    return {
+        type: actionTypes.NOTEBOOK_OPENADDMODAL
+    }
+}
+export const notebookCloseAddModal = () => {
+    return {
+        type: actionTypes.NOTEBOOK_CLOSEADDMODAL
+    }
+}
+
 export const updateNotebookState = (updatedNotebook) => {
     return {
         type: actionTypes.NOTEBOOK_UPDATE_STATE,

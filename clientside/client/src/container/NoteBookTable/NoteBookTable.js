@@ -37,7 +37,7 @@ class NoteBookTable extends Component {
                             onChange={(event) => this.props.onChangeSearchFilter(event.target.value)}
                         /></div>
                     <div className="col-sm-12 col-md-6">
-                        <button className="btn btn-primary"><AiOutlinePlus /> New Notebook</button>
+                        <button onClick={() => this.props.onOpenAddModal()} className="btn btn-primary"><AiOutlinePlus /> New Notebook</button>
                     </div>
                 </div>
                 <table className="table table-hover">
@@ -91,17 +91,16 @@ class NoteBookTable extends Component {
                     >
                         <NotebookModal />
                     </Modal>
-                    {/* <Modal show={this.props.show} modalClosed={this.props.onCloseModal}>
-                        
-                    </Modal> */}
-                    <div className="card mt-4 mb-3" style={{ widthRight: '18rem' }}>
-                        <div className="card-header">
-                            Add New Notebook please!!
-                    </div>
-                        <div className="container m-2">
-                            <NoteBooktableAdd />
-                        </div>
-                    </div>
+                    <Modal
+                        title="Add New Notebook Please!"
+                        centered
+                        visible={this.props.showAddTable}
+                        onCancel={this.props.onCloseAddModal}
+                        footer={null}
+                        width={1000}
+                    >
+                        <NoteBooktableAdd />
+                    </Modal>
                 </div>
                 <div className="container-fluid">{notebookList}</div>
             </div>
@@ -111,12 +110,15 @@ class NoteBookTable extends Component {
 
 const mapStateToProps = (state) => ({
     show: state.notebookTable.show,
+    showAddTable: state.notebookTable.showAddTable,
     notebookSearched: state.notebookTable.notebookSearched
 })
 
 const mapDispatchToProps = dispatch => ({
     onOpenModal: (id) => dispatch(actions.notebookOpenModal(id)),
+    onOpenAddModal: () => dispatch(actions.notebookOpenAddModal()),
     onCloseModal: () => dispatch(actions.notebookCloseModal()),
+    onCloseAddModal: () => dispatch(actions.notebookCloseAddModal()),
     onFetchNotebookList: () => dispatch(actions.fetchNotebookLists()),
     onChangeSearchFilter: (searchItem) => dispatch(actions.changeSearchFilter(searchItem))
 })

@@ -1,6 +1,8 @@
 export {
     notebookOpenModal,
     notebookCloseModal,
+    notebookOpenAddModal,
+    notebookCloseAddModal,
     updateNotebookState,
     updateNotebookAddState,
     fetchNotebookLists,

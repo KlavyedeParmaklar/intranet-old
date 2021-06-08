@@ -6,6 +6,7 @@ import * as actions from '../../../store/actions/index'
 
 // UI
 import Input from '../../../components/UI/Input/Input'
+import { message } from 'antd'
 
 class NoteBooktableAdd extends Component {
 
@@ -56,6 +57,13 @@ class NoteBooktableAdd extends Component {
             newNotebookSent[key] = this.props.addNotebookTable[key].value
         }
         this.props.onAddNotebook(newNotebookSent)
+        this.props.onCloseAddModal()
+        message.success({
+            content:'Successfully Added New Notebook!',
+            duration: 2,
+            style:{ marginTop:'6rem'}
+        })
+        window.location.reload();
     }
 
     render() {
@@ -90,19 +98,7 @@ class NoteBooktableAdd extends Component {
         )
         return (
             <div className="container">
-                <div className="row">
-                    <div className="col col-lg-3">{newNotebook}</div>
-                    <div className="col-lg-9">
-                        <h2>Test test test</h2>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        </p>
-                    </div>
-                </div>
+                {newNotebook}
             </div>
         )
     }
@@ -115,7 +111,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     onUpdateNotebookAddState: (addNotebook, formIsValid) => dispatch(actions.updateNotebookAddState(addNotebook, formIsValid)),
-    onAddNotebook: (notebook) => dispatch(actions.addNotebook(notebook))
+    onAddNotebook: (notebook) => dispatch(actions.addNotebook(notebook)),
+    onCloseAddModal: () => dispatch(actions.notebookCloseAddModal()),
 })
 
 

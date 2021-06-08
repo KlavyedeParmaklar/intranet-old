@@ -249,6 +249,7 @@ const initialState = {
     notebookListModal: [],
     notebookSearched: [],
     show: false,
+    showAddTable: false,
     formIsValid: false
 }
 
@@ -269,6 +270,14 @@ const notebookOpenModal = (state, action) => {
 
 const notebookCloseModal = (state, action) => {
     return updatedObject(state, { show: false })
+}
+
+const notebookOpenAddModal = (state, action) => {
+    return updatedObject(state, { showAddTable: true })
+}
+
+const notebookCloseAddModal = (state, action) => {
+    return updatedObject(state, { showAddTable: false })
 }
 
 const updateNotebookState = (state, action) => {
@@ -292,6 +301,8 @@ const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.NOTEBOOK_OPENMODAL: return notebookOpenModal(state, action)
         case actionTypes.NOTEBOOK_CLOSEMODAL: return notebookCloseModal(state, action)
+        case actionTypes.NOTEBOOK_OPENADDMODAL: return notebookOpenAddModal(state, action)
+        case actionTypes.NOTEBOOK_CLOSEADDMODAL: return notebookCloseAddModal(state, action)
         case actionTypes.NOTEBOOK_UPDATE_STATE: return updateNotebookState(state, action)
         case actionTypes.NOTEBOOK_UPDATE_ADD_STATE: return updateNotebookAddState(state, action)
         case actionTypes.FETCHNOTEBOOKLIST: return fetchNotebookList(state, action)
