@@ -37,7 +37,6 @@ export default class Navbar extends Component {
                         <Menu.Item key="2"><Link to="/">Home</Link></Menu.Item>
                         <Menu.Item key="3"><Link to="/telephonelist">Telephone List</Link></Menu.Item>
                         <Menu.Item key="4"><Link to="/blog">TBUK Blog</Link></Menu.Item>
-                        <Menu.Item key="5"><Link to="/blog/create">TBUK Blog Create</Link></Menu.Item>
                         <Menu.Item key="6"><Link to="/dashboard">Dashboard</Link></Menu.Item>
                         <Menu.Item key="7" className="ms-auto"><Link onClick={() => logoutHandler()} to="/">Logout</Link></Menu.Item>
                     </Menu>
@@ -45,7 +44,7 @@ export default class Navbar extends Component {
             )
         } else {
             return (
-                <div className=" fixed-top">
+                <div className="fixed-top">
                     <div className="logo"></div>
                     <Menu style={{ paddingTop: "1rem", paddingBottom: "1rem" }} theme="light" mode="horizontal">
                         <Menu.Item  key="1"><img src={TBlogo} className="AppLogo" alt="tblogo" /></Menu.Item>

@@ -6,6 +6,7 @@ import * as actions from '../../../store/actions/index'
 
 // UI
 import Input from '../../../components/UI/Input/Input'
+import { message } from 'antd'
 
 class NotebookModal extends Component {
     inputChangedHandler = (event, inputIdentifier) => {
@@ -17,6 +18,7 @@ class NotebookModal extends Component {
     }
 
     formSubmit = (event) => {
+        event.preventDefault()
         let updatedNotebook = {}
         for (let key in this.props.updateNotebookTable) {
             updatedNotebook[key] = this.props.updateNotebookTable[key].value
@@ -25,8 +27,12 @@ class NotebookModal extends Component {
         this.props.onUpdateNotebookList(updatedNotebook)
         this.props.onCloseModal()
         // Have to refresh page because AJAX cannot read properties after update immediately
+        message.success({
+            content:'Successfully updated!',
+            duration: 2,
+            style:{ marginTop:'6rem'}
+        })
         window.location.reload();
-
     }
 
     render() {

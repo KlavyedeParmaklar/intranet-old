@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import moment from 'moment'
 
 // Modal
-import Modal from '../../components/UI/Modal/Modal'
+// import Modal from '../../components/UI/Modal/Modal'
+import { Modal, Button } from 'antd';
 
 // Notebook Modal Component
 import NotebookModal from './NotebookModal/NotebookModal'
@@ -80,9 +81,19 @@ class NoteBookTable extends Component {
         return (
             <div>
                 <div className="container">
-                    <Modal show={this.props.show} modalClosed={this.props.onCloseModal}>
+                    <Modal
+                        title="Title"
+                        centered
+                        visible={this.props.show}
+                        onCancel={this.props.onCloseModal}
+                        footer={null}
+                        width={2000}
+                    >
                         <NotebookModal />
                     </Modal>
+                    {/* <Modal show={this.props.show} modalClosed={this.props.onCloseModal}>
+                        
+                    </Modal> */}
                     <div className="card mt-4 mb-3" style={{ widthRight: '18rem' }}>
                         <div className="card-header">
                             Add New Notebook please!!

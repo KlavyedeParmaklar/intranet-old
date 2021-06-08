@@ -38,7 +38,11 @@ function CreatePage(props) {
         axios.post('/api/blog/createPost', variables).then(response => {
             console.log(response)
             if (response.data.success) {
-                message.success('Post Created!')
+                message.success({
+                    content:'Post Created!',
+                    duration: 2,
+                    style:{ marginTop:'6rem'}
+                })
 
                 setTimeout(() => {
                     props.history.push('/blog')
@@ -65,7 +69,7 @@ function CreatePage(props) {
                             size="large"
                             htmlType="submit"
                             className=""
-                            onSubmit={onSubmit}
+                            onClick={onSubmit}
                         >Submit</Button>
                     </div>
                 </Form>
