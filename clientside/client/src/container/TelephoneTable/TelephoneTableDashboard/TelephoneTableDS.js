@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../../../store/actions/index'
+import { Table, Input, InputNumber, Popconfirm, Form, Typography } from 'antd';
 
 class TelephoneTableDS extends Component {
     componentDidMount() {
@@ -8,9 +9,8 @@ class TelephoneTableDS extends Component {
     }
 
     render() {
-
-        let telephoneList = (
-            <div>
+        return (
+            <div className="container">
                 <div className="row">
                     <div className="mt-3 mb-3 col-md-6">
                         <input
@@ -22,45 +22,22 @@ class TelephoneTableDS extends Component {
                         />
                     </div>
                 </div>
-
-                <table className="table table-hover">
-                    <thead style={{ backgroundColor: "#dc6114" }} >
-                        <tr>
-                            <th>#</th>
-                            <th>Name</th>
-                            <th>Title</th>
-                            <th>Extention</th>
-                            <th>Direct Line</th>
-                            <th>Location</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            this.props.telephoneSearched.map(tel => (
-                                <tr key={tel.telephoneID}>
-                                    <td>{tel.telephoneID}</td>
-                                    <td>{tel.userName}</td>
-                                    <td>{tel.title}</td>
-                                    <td>{tel.extention}</td>
-                                    <td>{tel.directLine}</td>
-                                    <td>{tel.location}</td>
-                                </tr>
-                            ))
-                        }
-                    </tbody>
-                </table>
-            </div>)
-
-        return (
-            <div className="container">
-                {telephoneList}
+                <Form>
+                    <Table
+                        dataSource={this.props.telephoneSearched}
+                        columns={this.props.telephoneColumns}
+                        rowClassName="editable-row"
+                    />
+                </Form>
             </div>
         )
     }
 }
 
+
 const mapStateToProps = (state) => ({
-    telephoneSearched: state.telephoneTable.telephoneSearched
+    telephoneSearched: state.telephoneTable.telephoneSearched,
+    telephoneColumns: state.telephoneTable.telephoneColumns
 })
 
 const mapDispatchToProps = dispatch => ({
