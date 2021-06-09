@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-import { Card, Icon, Avatar, Col, Typography, Row } from 'antd';
+import moment from 'moment'
+import { Card, Avatar, Col, Typography, Row } from 'antd';
+import {
+    EllipsisOutlined,
+} from '@ant-design/icons';
 import 'antd/dist/antd.css'
 
 const { Title } = Typography
@@ -28,9 +32,10 @@ function BlogPage() {
                 hoverable
                 style={{ width: 370, marginTop: 16 }}
                 actions={[
-                    <a href={`/blog/post/${blog._id}`}>...</a>,
+                    <a href={`/blog/post/${blog._id}`}><EllipsisOutlined /></a>,
                 ]}
             >
+                <Meta title={blog.content} />
                 {/* <Meta
                     avatar={
                         <Avatar src={blog.writer.image} />

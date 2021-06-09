@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-import { Card, Icon, Avatar, Col, Typography } from 'antd';
+import moment from 'moment'
+import { Layout, Card, Icon, Avatar, Row, Col, Typography } from 'antd';
+
 const { Title } = Typography
+const { Footer } = Layout;
 
 function PostPage(props) {
 
@@ -25,12 +28,11 @@ function PostPage(props) {
 
     if (post.writer) {
         return (
-            <div className="postPage" style={{ width: '80%', margin: '6rem auto'}}>
-                <Title level={2}>{post.writer.name}`s Post</Title>
-                <br />
-                <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                    <Title level={4}>{post.createdAt}</Title>
-                </div>
+            <div className="postPage" style={{ width: '80%', margin: '6rem auto' }}>
+                <Row>
+                    <Col span={6}><Title level={4}>{post.writer.name}`s Post</Title></Col>
+                    <Col span={6}><Title level={5}>{moment(post.createdAt).format('DD MMMM YYYY, h:mm a')}</Title></Col>
+                </Row>
                 <div dangerouslySetInnerHTML={{ __html: post.content }} />
             </div>
         )
