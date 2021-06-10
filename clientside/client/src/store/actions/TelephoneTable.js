@@ -30,3 +30,10 @@ export const fetchTelephoneLists = () => {
         })
     }
 }
+
+export const editTableUpdate = (updatedTelephoneObject) => {
+    return dispatch => {
+        const API_URL_UPDATETELEPHONELIST = 'api/updatetelephone'
+        axios.post(API_URL_UPDATETELEPHONELIST, updatedTelephoneObject)
+    }
+}

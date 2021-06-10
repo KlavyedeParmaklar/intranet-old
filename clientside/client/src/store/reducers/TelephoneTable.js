@@ -12,26 +12,31 @@ const initialState = {
             title: 'Name',
             dataIndex: 'userName',
             key: 'userName',
+            editable: true,
         },
         title: {
             title: 'Title',
             dataIndex: 'title',
             key: 'title',
+            editable: true,
         },
         extention: {
             title: 'Extention',
             dataIndex: 'extention',
             key: 'extention',
+            editable: true,
         },
         directLine: {
             title: 'Direct Line',
             dataIndex: 'directLine',
             key: 'directLine',
+            editable: true,
         },
         location: {
             title: 'Location',
             dataIndex: 'location',
             key: 'location',
+            editable: true,
         },
         operation: {
             title: 'Operation',

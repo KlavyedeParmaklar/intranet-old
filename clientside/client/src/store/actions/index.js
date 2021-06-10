@@ -14,5 +14,6 @@ export {
 export {
     fetchTelephoneLists,
     telephoneSearchFilter,
-    editTableColumns
+    editTableColumns,
+    editTableUpdate
 } from './TelephoneTable'

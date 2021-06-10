@@ -3,7 +3,7 @@ import moment from 'moment'
 
 // Modal
 // import Modal from '../../components/UI/Modal/Modal'
-import { Modal, Button } from 'antd';
+import { Modal, message, Button } from 'antd';
 
 // Notebook Modal Component
 import NotebookModal from './NotebookModal/NotebookModal'
@@ -63,7 +63,12 @@ class NoteBookTable extends Component {
                                 <td>{nbList.notebookModal}</td>
                                 <td>{nbList.notebookSerialNo}</td>
                                 <td>{nbList.notebookName}</td>
-                                <td>{nbList.anydeskID}<CopyToClipboard text={nbList.anydeskID}><AiOutlineCopy onClick={() => alert(`Copied '${nbList.anydeskID}' ID to Clipboard!`)} /></CopyToClipboard></td>
+                                <td>{nbList.anydeskID}<CopyToClipboard text={nbList.anydeskID}>
+                                    <AiOutlineCopy onClick={() => message.success({
+                                        content: `Copied '${nbList.anydeskID}' ID to Clipboard!`,
+                                        style: { marginTop: '6rem' },
+                                        duration: .5,
+                                    })} /></CopyToClipboard></td>
                                 <td>{nbList.owner}</td>
                                 <td>{nbList.ownerMail}</td>
                                 <td>{nbList.ownerOTP}</td>

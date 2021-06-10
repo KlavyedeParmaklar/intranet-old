@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Table, Input, InputNumber, Popconfirm, Form, Typography } from 'antd';
+import { Table, Input, InputNumber, Popconfirm, Form, Typography, message } from 'antd';
 import { connect, useDispatch } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as actions from '../../../store/actions/index'
@@ -41,74 +41,108 @@ const EditableCell = ({
 
 const EditableTable = (props) => {
     const [form] = Form.useForm();
-    const [data, setData] = useState([]);
     const [editingKey, setEditingKey] = useState('');
     const dispatch = useDispatch();
-
-    const editColumns = {       
-        render: (_, record) => {
-            const editable = isEditing(record);
-            return editable ? (
-                <span>
-                    <a
-                        href="javascript:;"
-                        onClick={() => save(record.key)}
-                        style={{
-                            marginRight: 8,
-                        }}
-                    >
-                        Save
+    const render = (_, record) => {
+        const editable = isEditing(record);
+        // console.log("RECORD :", record)
+        return editable ? (
+            <span>
+                <a
+                    href="javascript:;"
+                    onClick={() => save(record.telephoneID)}
+                    style={{
+                        marginRight: 8,
+                    }}
+                >
+                    Save
                   </a>
-                    <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
-                        <a>Cancel</a>
-                    </Popconfirm>
-                </span>
-            ) : (
-                <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)}>
-                    Edit
-                </Typography.Link>
-            );
-        },
+                <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
+                    <a>Cancel</a>
+                </Popconfirm>
+            </span>
+        ) : (
+            <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)}>
+                Edit
+            </Typography.Link>
+        );
     }
 
-    dispatch(actions.editTableColumns(editColumns))
+    dispatch(actions.editTableColumns(render))
 
-    const isEditing = (record) => record.key === editingKey;
+    const isEditing = (record) => record.telephoneID === editingKey;
 
     const edit = (record) => {
         form.setFieldsValue({
-            name: '',
-            age: '',
-            address: '',
+            telephoneID: '',
+            userName: '',
+            title: '',
+            extention: '',
+            directLine: '',
+            location: '',
             ...record,
         });
-        setEditingKey(record.key);
+        setEditingKey(record.telephoneID);
     };
 
     const cancel = () => {
         setEditingKey('');
     };
 
-    const save = async (key) => {
+    const save = async (telephoneID) => {
         try {
             const row = await form.validateFields();
-            const newData = [...data];
-            const index = newData.findIndex((item) => key === item.key);
+            const newData = [...props.dataSource];
+            const index = newData.findIndex((item) => telephoneID === item.telephoneID);
 
             if (index > -1) {
                 const item = newData[index];
                 newData.splice(index, 1, { ...item, ...row });
-                setData(newData);
                 setEditingKey('');
+                console.log(newData[index])
+                dispatch(actions.editTableUpdate(newData[index]))
+                window.location.reload()
+                message.success({
+                    content: "Telephone Table Updated!",
+                    style: { marginTop: '6rem' },
+                    duration: 2,
+                });
             } else {
                 newData.push(row);
-                setData(newData);
                 setEditingKey('');
+                dispatch(actions.editTableUpdate(newData[index]))
+                window.location.reload()
+                message.warning({
+                    content: `${index}`,
+                    style: { marginTop: '6rem' },
+                    duration: 2,
+                });
             }
         } catch (errInfo) {
-            console.log('Validate Failed:', errInfo);
+            message.error({
+                content: `Validate Failed: ${errInfo}`,
+                style: { marginTop: '6rem' },
+                duration: 1,
+            });
         }
     };
+
+    const mergedColumns = props.columns.map((col) => {
+        if (!col.editable) {
+            return col;
+        }
+
+        return {
+            ...col,
+            onCell: (record) => ({
+                record,
+                inputType: col.dataIndex === 'age' ? 'number' : 'text',
+                dataIndex: col.dataIndex,
+                title: col.title,
+                editing: isEditing(record),
+            }),
+        };
+    });
 
     return (
         <div>
@@ -121,7 +155,7 @@ const EditableTable = (props) => {
                     }}
                     bordered
                     dataSource={props.dataSource}
-                    columns={props.columns}
+                    columns={mergedColumns}
                     rowClassName="editable-row"
                     pagination={{
                         onChange: cancel,

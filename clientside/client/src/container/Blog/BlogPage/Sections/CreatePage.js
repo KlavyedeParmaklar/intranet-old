@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 
 import { Button, Form, Typography, message } from 'antd'
 import axios from 'axios'
-import { useSelector } from 'react-redux'
 import QuilEditor from '../../../../components/UI/Quilljs Editor/QuillEditor'
 const { Title } = Typography
 
@@ -39,9 +38,9 @@ function CreatePage(props) {
             console.log(response)
             if (response.data.success) {
                 message.success({
-                    content:'Post Created!',
+                    content: 'Post Created!',
                     duration: 2,
-                    style:{ marginTop:'6rem'}
+                    style: { marginTop: '6rem' }
                 })
 
                 setTimeout(() => {
