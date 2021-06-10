@@ -1,14 +1,20 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../../../store/actions/index'
-import { Table, Input, InputNumber, Popconfirm, Form, Typography } from 'antd';
+import EditableTable from '../../../components/UI/EditableTable/EditableTable'
 
 class TelephoneTableDS extends Component {
+
     componentDidMount() {
         this.props.onFetchTelephoneList()
     }
 
     render() {
+        let telephoneColumns = []
+        for (let key in this.props.telephoneColumns) {
+            telephoneColumns.push(this.props.telephoneColumns[key])
+        }
+        console.log("telephoneColumns : ", telephoneColumns)
         return (
             <div className="container">
                 <div className="row">
@@ -22,13 +28,7 @@ class TelephoneTableDS extends Component {
                         />
                     </div>
                 </div>
-                <Form>
-                    <Table
-                        dataSource={this.props.telephoneSearched}
-                        columns={this.props.telephoneColumns}
-                        rowClassName="editable-row"
-                    />
-                </Form>
+                <EditableTable dataSource={this.props.telephoneSearched} columns={telephoneColumns} />
             </div>
         )
     }

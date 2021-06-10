@@ -9,9 +9,16 @@ export const telephoneSearchFilter = (searchTelItem) => {
 }
 
 export const fetchTelephoneList = (telephoneList) => {
-    return{
+    return {
         type: actionTypes.FETCHTELEPHONELIST,
         telephoneList: telephoneList
+    }
+}
+
+export const editTableColumns = (columnsData) => {
+    return {
+        type: actionTypes.EDITTABLECOLUMNS,
+        columnsData: columnsData
     }
 }
 

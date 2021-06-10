@@ -1,52 +1,53 @@
 import * as actionTypes from '../actions/actionTypes'
 import { updatedObject } from '../utility'
-import { Modal } from 'antd'
-import { EditOutlined } from '@ant-design/icons';
-import 'antd/dist/antd.css'
 
 const initialState = {
-    telephoneColumns: [
-        {
+    telephoneColumns: {
+        telephoneID: {
             title: '#',
             dataIndex: 'telephoneID',
             key: 'telephoneID',
         },
-        {
+        userName: {
             title: 'Name',
             dataIndex: 'userName',
             key: 'userName',
         },
-        {
+        title: {
             title: 'Title',
             dataIndex: 'title',
             key: 'title',
         },
-        {
+        extention: {
             title: 'Extention',
             dataIndex: 'extention',
             key: 'extention',
         },
-        {
+        directLine: {
             title: 'Direct Line',
             dataIndex: 'directLine',
             key: 'directLine',
         },
-        {
+        location: {
             title: 'Location',
             dataIndex: 'location',
             key: 'location',
         },
-        {
+        operation: {
             title: 'Operation',
             dataIndex: 'operation',
-            render: () => {
-                return <EditOutlined />
-            }
-        }
-    ],
+            render: {}
+        },
+    },
     telephoneList: [],
     telephoneSearched: [],
+    telephoneColumnsArray: [],
     show: false,
+}
+
+const editableColumns = (state, action) => {
+    state.telephoneColumns.operation.render = action.columnsData
+    return updatedObject(state, { telephoneColumns: state.telephoneColumns })
 }
 
 const allTelephoneList = (state, action) => {
@@ -62,6 +63,7 @@ const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.FETCHTELEPHONELIST: return allTelephoneList(state, action)
         case actionTypes.SEARCHTELEPHONEITEM: return telephoneSearchFilter(state, action)
+        case actionTypes.EDITTABLECOLUMNS: return editableColumns(state, action)
         default: return state
     }
 }
