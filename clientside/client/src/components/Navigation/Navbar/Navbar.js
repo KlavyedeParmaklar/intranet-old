@@ -51,7 +51,6 @@ export default class Navbar extends Component {
                         <Menu.Item key="2"><Link to="/">Home</Link></Menu.Item>
                         <Menu.Item key="3"><Link to="/telephonelist">Telephone List</Link></Menu.Item>
                         <Menu.Item key="4"><Link to="/blog">TBUK Blog</Link></Menu.Item>
-                        <Menu.Item key="5"><Link to="/blog/create">TBUK Blog Create</Link></Menu.Item>
                     </Menu>
                 </div>
             )
